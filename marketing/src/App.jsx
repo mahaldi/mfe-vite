@@ -5,7 +5,6 @@ import Pricing from './Page/Pricing'
 
 function App(props) {
   const {history} = props;
-  console.log('history', history)
   return (
     <Router history={history}>
       <Switch>
