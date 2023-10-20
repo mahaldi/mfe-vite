@@ -45,8 +45,8 @@ export default defineConfig(({ command }) => {
     config.plugins.push(federation({
       ...federationConfig,
       remotes: {
-        marketing: `marketing@${domain}/marketing/latest/assets/remoteEntry.js`,
-        dashboard: `dashboard@${domain}/dashboard/latest/assets/remoteEntry.js`,
+        marketing: `${domain}/marketing/latest/assets/remoteEntry.js`,
+        dashboard: `${domain}/dashboard/latest/assets/remoteEntry.js`,
         // marketing: 'http://localhost:4173/assets/remoteEntry.js',
         // dashboard: 'http://localhost:4174/assets/remoteEntry.js'
       }
