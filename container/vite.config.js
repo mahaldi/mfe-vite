@@ -1,4 +1,4 @@
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import federation from "@originjs/vite-plugin-federation";
 
@@ -19,7 +19,8 @@ const federationConfig = {
   name: 'container',
   shared: ["react", "react-router-dom"],
 }
-export default defineConfig(({ command, mode }) => {
+const domain = process.env.PRODUCTION_DOMAIN; // eslint-disable-line
+export default defineConfig(({ command }) => {
   if (command === 'serve') {
     // dev specific config
     
@@ -40,20 +41,19 @@ export default defineConfig(({ command, mode }) => {
     }
   } else {
     // command === 'build'
-    const env = loadEnv(mode, process.cwd(), ''); // eslint-disable-line
-    // const domain = env.PRODUCTION_DOMAIN;
 
     config.plugins.push(federation({
       ...federationConfig,
       remotes: {
-        // marketing: `marketing@${domain}/marketing/latest/remoteEntry.js`,
-        marketing: 'http://localhost:4173/assets/remoteEntry.js',
-        dashboard: 'http://localhost:4174/assets/remoteEntry.js'
+        marketing: `marketing@${domain}/marketing/latest/remoteEntry.js`,
+        dashboard: `dashboard@${domain}/dashboard/latest/remoteEntry.js`,
+        // marketing: 'http://localhost:4173/assets/remoteEntry.js',
+        // dashboard: 'http://localhost:4174/assets/remoteEntry.js'
       }
     }))
     return {
       mode: 'production',
-      // base: '/container/latest/',
+      base: '/container/latest/',
       ...config
     }
   }
