@@ -1,7 +1,7 @@
 {
   "name": "mfe-vite",
   "version": "1.0.0",
-  "description": "",
+  "description": "live demo: https://d26079orlf91zu.cloudfront.net/",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
